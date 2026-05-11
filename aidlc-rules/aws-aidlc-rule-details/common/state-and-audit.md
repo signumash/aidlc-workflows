@@ -53,10 +53,13 @@ All logging goes to **unit-level** (`{PROJECT_AIDLC_DOCS_ROOT}/construction/{uni
 - Code Generation plan approvals, step completions, verification results
 - Each engineer writes only to their own unit's audit
 
-### During Build and Test (post all units)
+### During Build and Test
 
-Logging goes to **project-level** (`{PROJECT_AIDLC_DOCS_ROOT}/audit.md`):
-- Build-and-test spans all units and is a project-level activity
+Determine scope before logging:
+- **If building/testing a single unit** → log to unit-level audit and update unit-state.md
+- **If building/testing the entire project** (all units together) → log to project-level audit and update project-state.md
+
+If unclear, ask the user: "Are you building and testing a specific unit, or the entire project?"
 
 ## Escalation: Unit Change with Cross-Boundary Impact
 
