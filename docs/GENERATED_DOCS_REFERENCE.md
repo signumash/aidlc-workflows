@@ -59,6 +59,7 @@ aidlc-docs/
 │   │   │   ├── business-logic-model.md                     # Detailed business logic and algorithms
 │   │   │   ├── business-rules.md                           # Business rules, validation logic, and constraints
 │   │   │   ├── domain-entities.md                          # Domain models with entities and relationships
+│   │   │   ├── structural-design.md                        # Class/module diagram, method signatures, dependency direction (if applicable)
 │   │   │   └── frontend-components.md                      # UI component hierarchy, props, state, interactions (if unit has frontend)
 │   │   │
 │   │   ├── nfr-requirements/                               # Created only if NFR Requirements executes for this unit

@@ -75,7 +75,30 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
   - Form validation rules
   - API integration points (which backend endpoints each component uses)
 
-### Step 7: Present Completion Message
+### Step 7: Generate Structural Design (if applicable)
+
+Generate a structural design that serves as the concrete blueprint for code generation. This step bridges the gap between technology-agnostic business logic and implementation.
+
+**When to generate**: For object-oriented languages (Java, Python, C#, TypeScript, etc.) or any language where module/type structure benefits from upfront design. Skip for simple scripts or purely functional pipelines where the domain-entities already capture sufficient structure.
+
+Create `{PROJECT_AIDLC_DOCS_ROOT}/construction/{unit-name}/functional-design/structural-design.md` with:
+
+- **Class/Module diagram** (Mermaid classDiagram or text-based):
+  - Concrete class/module names
+  - Inheritance and composition relationships
+  - Key method signatures (name, parameters, return type)
+  - Attributes with types
+- **Responsibility mapping**: which class/module implements which business rule or story
+- **Dependency direction**: who depends on whom (imports/references)
+- **Interface definitions**: any interfaces/protocols/abstract classes that define boundaries
+
+**Rules**:
+- Class names and method signatures defined here become the contract for code generation
+- Code generation MUST follow this structure (not invent its own)
+- If the structural design needs to change during code-gen, update it first and note the deviation
+- Use the target language's idioms (e.g., protocols for Python, interfaces for Java, traits for Rust)
+
+### Step 8: Present Completion Message
 - Present completion message in this structure:
      1. **Completion Announcement** (mandatory): Always start with this:
 
@@ -108,12 +131,12 @@ Design detailed business logic for the unit, technology-agnostic and focused pur
 ---
 ```
 
-### Step 8: Wait for Explicit Approval
+### Step 9: Wait for Explicit Approval
 - Do not proceed until the user explicitly approves the functional design
 - Approval must be clear and unambiguous
 - If user requests changes, update the design and repeat the approval process
 
-### Step 9: Record Approval and Update Progress
+### Step 10: Record Approval and Update Progress
 - Log approval in audit.md with timestamp
 - Record the user's approval response with timestamp
 - Mark Functional Design stage complete in project-state.md

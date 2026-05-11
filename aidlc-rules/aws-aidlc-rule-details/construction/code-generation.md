@@ -19,6 +19,7 @@ This stage generates code for each unit of work through two integrated parts:
 
 ## Step 1: Analyze Unit Context
 - [ ] Read unit design artifacts from Unit Design Generation
+- [ ] Read structural-design.md if it exists (class/module structure is the contract for generation)
 - [ ] Read unit story map to understand assigned stories
 - [ ] Identify unit dependencies and interfaces
 - [ ] Validate unit is ready for code generation
