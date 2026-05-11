@@ -18,16 +18,14 @@
 
 ## During AI-DLC Inception Phase
 
-- Architectural decisions → docs/system-specs/design/
-- Cross-cutting rules (ledger, security) → docs/system-specs/common/
-- Planning artifacts (requirements, stories) → aidlc-docs/projects/{project}/inception/
+- Planning artifacts (requirements, stories, design) → aidlc-docs/projects/{project}/inception/
+- DO NOT write to docs/system-specs/ during inception — nothing is implemented yet
 
 ## During AI-DLC Construction Phase
 
 - Unit task specs (functional design, NFR, code plan) → aidlc-docs/projects/{project}/construction/{unit}/
 - Generated code → workspace root (src/)
-- After code generation: update docs/system-specs/modules/{component}.md
-- After unit complete: verify system specs match implemented behavior
+- DO NOT update docs/system-specs/ during code generation — wait for unit completion
 
 ## On Unit Completion
 

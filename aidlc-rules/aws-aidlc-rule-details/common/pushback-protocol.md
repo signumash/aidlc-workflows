@@ -48,7 +48,8 @@ naming decision in code-decisions.md."
 
 When the user overrides a pushback:
 1. Comply with the change
-2. Document in `docs/system-specs/design/code-decisions.md` or the unit audit:
+2. Document in the audit (`{PROJECT_AIDLC_DOCS_ROOT}/audit.md` or unit-specific audit):
    - What was changed
    - What trade-off was accepted
    - User's reasoning (if provided)
+3. On unit completion, significant decisions are promoted to `docs/system-specs/design/code-decisions.md` along with the implementation

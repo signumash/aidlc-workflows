@@ -12,13 +12,16 @@ Before starting a unit that depends on another:
 3. If not complete: can start functional design but not construction
 4. If complete: load dependency's system spec and proceed
 
-## Interface Contracts (Cross-Unit Boundaries)
+## Cross-Unit Interface Resolution
 
-When Unit A produces an interface that Unit B depends on:
-1. Unit A's task spec MUST define the interface contract
-2. Once approved, interface is committed to docs/system-specs/modules/{interface}.md
-3. Unit B can begin functional design against published interface
-4. Unit A MUST NOT change published interface without notifying Unit B's assignee
+Cross-unit dependencies are resolved during planning, not by pre-populating system specs:
+
+1. **Units Generation (inception)** — identify cross-unit dependencies and high-level interface contracts
+2. **Unit 0 / Foundation (construction)** — implement shared interfaces, models, and contracts that other units depend on
+3. **Functional Design (per unit)** — define that unit's side of cross-unit boundaries in detail
+4. **Unit Completion** — only then do implemented interfaces land in `docs/system-specs/` via normal promotion
+
+Cross-unit interfaces MUST NOT be written to `docs/system-specs/` before they are implemented. The planning artifacts in `aidlc-docs/` (application-design, functional-design) serve as the contract during development.
 
 ## Merge Order
 
