@@ -25,6 +25,7 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 - Load `common/content-validation.md` for content validation requirements
 - Load `common/question-format-guide.md` for question formatting rules
 - Load `common/spec-management.md` for specification lifecycle rules
+- Load `common/state-and-audit.md` for state/audit routing rules
 - Load `common/pushback-protocol.md` for pushback guidance
 - Reference these throughout the workflow execution
 
@@ -541,6 +542,7 @@ The Operations stage will eventually include:
 │           │   ├── plans/
 │           │   ├── {unit-name}/
 │           │   │   ├── unit-state.md   # Unit-level state (engineer owns)
+│           │   │   ├── audit.md        # Unit-level audit (engineer owns)
 │           │   │   ├── functional-design/
 │           │   │   ├── nfr-requirements/
 │           │   │   ├── nfr-design/

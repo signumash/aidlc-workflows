@@ -45,6 +45,7 @@ The workspace uses two documentation directories:
 │           │   ├── plans/
 │           │   ├── {unit-name}/
 │           │   │   ├── unit-state.md
+│           │   │   ├── audit.md
 │           │   │   ├── functional-design/
 │           │   │   ├── nfr-requirements/
 │           │   │   ├── nfr-design/

@@ -73,7 +73,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] Note total number of steps and estimated scope
 
 ## Step 6: Log Approval Prompt
-- [ ] Before asking for approval, log the prompt with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
+- [ ] Before asking for approval, log the prompt with timestamp in unit audit (see `common/state-and-audit.md`)
 - [ ] Include reference to the complete unit code generation plan
 - [ ] Use ISO 8601 timestamp format
 
@@ -83,7 +83,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] If user requests changes, update the plan and repeat approval process
 
 ## Step 8: Record Approval Response
-- [ ] Log the user's approval response with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
+- [ ] Log the user's approval response with timestamp in unit audit (see `common/state-and-audit.md`)
 - [ ] Include the exact user response text
 - [ ] Mark the approval status clearly
 
@@ -164,9 +164,9 @@ This stage generates code for each unit of work through two integrated parts:
 - If user requests changes, update the code and repeat the approval process
 
 ## Step 16: Record Approval and Update Progress
-- Log approval in audit.md with timestamp
+- Log approval in unit audit with timestamp (see `common/state-and-audit.md` for routing rules)
 - Record the user's approval response with timestamp
-- Mark Code Generation stage as complete for this unit in project-state.md
+- Mark Code Generation stage as complete for this unit in unit-state.md
 
 ---
 

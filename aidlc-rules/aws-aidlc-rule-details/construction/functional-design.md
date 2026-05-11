@@ -137,6 +137,6 @@ Create `{PROJECT_AIDLC_DOCS_ROOT}/construction/{unit-name}/functional-design/str
 - If user requests changes, update the design and repeat the approval process
 
 ### Step 10: Record Approval and Update Progress
-- Log approval in audit.md with timestamp
+- Log approval in unit audit with timestamp (see `common/state-and-audit.md` for routing rules)
 - Record the user's approval response with timestamp
-- Mark Functional Design stage complete in project-state.md
+- Mark Functional Design stage complete in unit-state.md

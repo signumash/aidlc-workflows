@@ -94,6 +94,6 @@ Map logical software components to actual infrastructure choices for deployment 
 - If user requests changes, update the design and repeat the approval process
 
 ### Step 9: Record Approval and Update Progress
-- Log approval in audit.md with timestamp
+- Log approval in unit audit with timestamp (see `common/state-and-audit.md` for routing rules)
 - Record the user's approval response with timestamp
-- Mark Infrastructure Design stage complete in project-state.md
+- Mark Infrastructure Design stage complete in unit-state.md

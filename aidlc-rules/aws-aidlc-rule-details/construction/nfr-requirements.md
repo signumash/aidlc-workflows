@@ -94,6 +94,6 @@ Determine non-functional requirements for the unit and make tech stack choices.
 - If user requests changes, update the requirements and repeat the approval process
 
 ### Step 9: Record Approval and Update Progress
-- Log approval in audit.md with timestamp
+- Log approval in unit audit with timestamp (see `common/state-and-audit.md` for routing rules)
 - Record the user's approval response with timestamp
-- Mark NFR Requirements stage complete in project-state.md
+- Mark NFR Requirements stage complete in unit-state.md
