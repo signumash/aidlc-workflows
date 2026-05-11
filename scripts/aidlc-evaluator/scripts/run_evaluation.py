@@ -359,7 +359,7 @@ def stage_execute(args: argparse.Namespace) -> Path | None:
 
     docs_dir = run_folder / "aidlc-docs"
     doc_files = list(docs_dir.rglob("*.md")) if docs_dir.is_dir() else []
-    real_docs = [f for f in doc_files if f.name not in ("aidlc-state.md", "audit.md")]
+    real_docs = [f for f in doc_files if f.name not in ("aidlc-state.md", "project-state.md", "audit.md")]
 
     if result.returncode != 0:
         if real_docs:

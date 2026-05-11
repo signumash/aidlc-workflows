@@ -38,22 +38,22 @@ Execute these stages in order. Load each rule file BEFORE executing its stage.
 
 3. **Requirements Analysis** (ALWAYS) — read `aidlc-rules/inception/requirements-analysis.md`
    - Read the vision file, analyze requirements
-   - Generate `aidlc-docs/inception/requirements/requirements.md`
-   - Generate `aidlc-docs/inception/requirements/requirement-verification-questions.md`
+   - Generate `aidlc-docs/projects/{project-id}/inception/requirements/requirements.md`
+   - Generate `aidlc-docs/projects/{project-id}/inception/requirements/requirement-verification-questions.md`
    - Self-approve and CONTINUE to next stage
 
 4. **User Stories** (CONDITIONAL) — read `aidlc-rules/inception/user-stories.md`
    - Generate user stories if project complexity warrants it
 
 5. **Workflow Planning** (ALWAYS) — read `aidlc-rules/inception/workflow-planning.md`
-   - Create `aidlc-docs/inception/plans/execution-plan.md`
-   - Create `aidlc-docs/inception/plans/application-design-plan.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/plans/execution-plan.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/plans/application-design-plan.md`
 
 6. **Application Design** (CONDITIONAL) — read `aidlc-rules/inception/application-design.md`
-   - Create `aidlc-docs/inception/application-design/components.md`
-   - Create `aidlc-docs/inception/application-design/component-methods.md`
-   - Create `aidlc-docs/inception/application-design/component-dependency.md`
-   - Create `aidlc-docs/inception/application-design/services.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/application-design/components.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/application-design/component-methods.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/application-design/component-dependency.md`
+   - Create `aidlc-docs/projects/{project-id}/inception/application-design/services.md`
 
 7. **Units Generation** (CONDITIONAL) — read `aidlc-rules/inception/units-generation.md`
    - Break system into units of work
@@ -71,30 +71,31 @@ For each unit of work (or the whole project if no units were defined):
 11. **Infrastructure Design** (CONDITIONAL) — read `aidlc-rules/construction/infrastructure-design.md`
 
 12. **Code Generation** (ALWAYS) — read `aidlc-rules/construction/code-generation.md`
-    - Create a detailed code generation plan in `aidlc-docs/construction/plans/`
+    - Create a detailed code generation plan in `aidlc-docs/projects/{project-id}/construction/plans/`
     - Generate ALL application code with proper package structure \
 (src/, tests/, pyproject.toml, etc.)
     - Write every source file, test file, and configuration file
     - Write COMPLETE, WORKING files — not stubs or placeholders
 
 13. **Build and Test** (ALWAYS) — read `aidlc-rules/construction/build-and-test.md`
-    - Create `aidlc-docs/construction/build-and-test/build-instructions.md`
-    - Create `aidlc-docs/construction/build-and-test/unit-test-instructions.md`
-    - Create `aidlc-docs/construction/build-and-test/integration-test-instructions.md`
+    - Create `aidlc-docs/projects/{project-id}/construction/build-and-test/build-instructions.md`
+    - Create `aidlc-docs/projects/{project-id}/construction/build-and-test/unit-test-instructions.md`
+    - Create `aidlc-docs/projects/{project-id}/construction/build-and-test/integration-test-instructions.md`
     - Install dependencies and run the test suite
     - If tests fail, read the error output, fix the code, and re-run until tests pass
-    - Create `aidlc-docs/construction/build-and-test/build-and-test-summary.md`
+    - Create `aidlc-docs/projects/{project-id}/construction/build-and-test/build-and-test-summary.md`
 
 ## File organization
 
-- All documentation and workflow artifacts: `aidlc-docs/`
+- All documentation and workflow artifacts: `aidlc-docs/projects/{project-id}/`
 - All generated application code: project root (alongside vision.md)
 - NEVER mix documentation and code locations
+- Use a short, descriptive project ID derived from the project name (e.g., "sci-calc", "bookshelf-api")
 
 ## Tracking
 
-- Create and maintain `aidlc-docs/aidlc-state.md` tracking progress through each phase
-- Append to `aidlc-docs/audit.md` with ISO 8601 timestamps for each action
+- Create and maintain `aidlc-docs/projects/{project-id}/project-state.md` tracking progress through each phase
+- Append to `aidlc-docs/projects/{project-id}/audit.md` with ISO 8601 timestamps for each action
 
 ## Important rules
 

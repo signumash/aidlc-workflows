@@ -24,7 +24,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] Validate unit is ready for code generation
 
 ## Step 2: Create Detailed Unit Code Generation Plan
-- [ ] Read workspace root and project type from `aidlc-docs/aidlc-state.md`
+- [ ] Read workspace root and project type from `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 - [ ] Determine code location (see Critical Rules for structure patterns)
 - [ ] **Brownfield only**: Review reverse engineering code-structure.md for existing files to modify
 - [ ] Document exact paths (never aidlc-docs/)
@@ -58,7 +58,7 @@ This stage generates code for each unit of work through two integrated parts:
   - Service boundaries and responsibilities
 
 ## Step 4: Create Unit Plan Document
-- [ ] Save complete plan as `aidlc-docs/construction/plans/{unit-name}-code-generation-plan.md`
+- [ ] Save complete plan as `{PROJECT_AIDLC_DOCS_ROOT}/construction/plans/{unit-name}-code-generation-plan.md`
 - [ ] Include step numbering (Step 1, Step 2, etc.)
 - [ ] Include unit context and dependencies
 - [ ] Include story traceability
@@ -72,7 +72,7 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] Note total number of steps and estimated scope
 
 ## Step 6: Log Approval Prompt
-- [ ] Before asking for approval, log the prompt with timestamp in `aidlc-docs/audit.md`
+- [ ] Before asking for approval, log the prompt with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
 - [ ] Include reference to the complete unit code generation plan
 - [ ] Use ISO 8601 timestamp format
 
@@ -82,12 +82,12 @@ This stage generates code for each unit of work through two integrated parts:
 - [ ] If user requests changes, update the plan and repeat approval process
 
 ## Step 8: Record Approval Response
-- [ ] Log the user's approval response with timestamp in `aidlc-docs/audit.md`
+- [ ] Log the user's approval response with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
 - [ ] Include the exact user response text
 - [ ] Mark the approval status clearly
 
 ## Step 9: Update Progress
-- [ ] Mark Code Generation Part 1 (Planning) complete in `aidlc-state.md`
+- [ ] Mark Code Generation Part 1 (Planning) complete in `project-state.md`
 - [ ] Update the "Current Status" section
 - [ ] Prepare for transition to Code Generation
 
@@ -96,7 +96,7 @@ This stage generates code for each unit of work through two integrated parts:
 # PART 2: GENERATION
 
 ## Step 10: Load Unit Code Generation Plan
-- [ ] Read the complete plan from `aidlc-docs/construction/plans/{unit-name}-code-generation-plan.md`
+- [ ] Read the complete plan from `{PROJECT_AIDLC_DOCS_ROOT}/construction/plans/{unit-name}-code-generation-plan.md`
 - [ ] Identify the next uncompleted step (first [ ] checkbox)
 - [ ] Load the context for that step (unit, dependencies, stories)
 
@@ -108,7 +108,7 @@ This stage generates code for each unit of work through two integrated parts:
   - **If file doesn't exist**: Create new file
 - [ ] Write to correct locations:
   - **Application Code**: Workspace root per project structure
-  - **Documentation**: `aidlc-docs/construction/{unit-name}/code/` (markdown only)
+  - **Documentation**: `{PROJECT_AIDLC_DOCS_ROOT}/construction/{unit-name}/code/` (markdown only)
   - **Build/Config Files**: Workspace root
 - [ ] Follow unit story requirements
 - [ ] Respect dependencies and interfaces
@@ -116,7 +116,7 @@ This stage generates code for each unit of work through two integrated parts:
 ## Step 12: Update Progress
 - [ ] Mark the completed step as [x] in the unit code generation plan
 - [ ] Mark associated unit stories as [x] when their generation is finished
-- [ ] Update `aidlc-docs/aidlc-state.md` current status
+- [ ] Update `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` current status
 - [ ] **Brownfield only**: Verify no duplicate files created (e.g., no `ClassName_modified.java` alongside `ClassName.java`)
 - [ ] Save all generated artifacts
 
@@ -143,7 +143,7 @@ This stage generates code for each unit of work through two integrated parts:
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
 > Please examine the generated code at:
 > - **Application Code**: `[actual-workspace-path]`
-> - **Documentation**: `aidlc-docs/construction/[unit-name]/code/`
+> - **Documentation**: `{PROJECT_AIDLC_DOCS_ROOT}/construction/[unit-name]/code/`
 
 
 
@@ -165,7 +165,7 @@ This stage generates code for each unit of work through two integrated parts:
 ## Step 16: Record Approval and Update Progress
 - Log approval in audit.md with timestamp
 - Record the user's approval response with timestamp
-- Mark Code Generation stage as complete for this unit in aidlc-state.md
+- Mark Code Generation stage as complete for this unit in project-state.md
 
 ---
 
@@ -173,8 +173,8 @@ This stage generates code for each unit of work through two integrated parts:
 
 ### Code Location Rules
 - **Application code**: Workspace root only (NEVER aidlc-docs/)
-- **Documentation**: aidlc-docs/ only (markdown summaries)
-- **Read workspace root** from aidlc-state.md before generating code
+- **Documentation**: {PROJECT_AIDLC_DOCS_ROOT}/ only (markdown summaries)
+- **Read workspace root** from project-state.md before generating code
 
 **Structure patterns by project type**:
 - **Brownfield**: Use existing structure (e.g., `src/main/java/`, `lib/`, `pkg/`)
@@ -208,10 +208,45 @@ When generating UI code (web, mobile, desktop), ensure elements are automation-f
 - Avoid dynamic or auto-generated IDs that change between renders
 - Keep `data-testid` values stable across code changes (only change when element purpose changes)
 
+## Post-Generation Verification (MANDATORY)
+
+**CRITICAL**: After completing all generation steps for a unit, you MUST perform verification before presenting completion to the user. See `construction/code-verification.md` for full details.
+
+### Verification Checklist (per step)
+1. Load all reference rule documents listed in project-state.md (or aidlc-state.md for legacy projects)
+2. For each generated file, verify:
+   - No method violates documented constraints
+   - All documented guards are implemented (not commented as TODO)
+   - Interface contracts match documented decisions
+3. If violations found: fix before marking step complete
+4. Log verification result in plan checkbox annotation
+
+### Code Completeness Standard
+Generated code MUST be:
+- **Compilable**: All imports, types, and method signatures are valid
+- **Functional**: Method bodies contain actual implementation logic
+- **Complete to contract**: Every interface method has a working implementation
+
+NOT acceptable as "generated code":
+- Comment-only method bodies (`// TODO`, `// implement later`)
+- Placeholder return statements (`return null;`)
+- Partial implementations with inline notes
+
+If implementation requires unavailable information, mark step as PARTIAL — not COMPLETE.
+
+### Self-Review Before Presentation
+After completing all generation steps:
+1. Re-read generated code (load each file)
+2. Check for: constraint violations, interface/impl inconsistencies, missing error handling
+3. Fix issues before presenting to user
+4. Note self-corrections in completion summary
+
 ## Completion Criteria
 - Complete unit code generation plan created and approved
 - All steps in unit code generation plan marked [x]
 - All unit stories implemented according to plan
 - All code and tests generated (tests will be executed in Build & Test phase)
+- Post-generation verification passed (no constraint violations)
+- Decision traceability matrix complete (all constraints verified)
 - Deployment artifacts generated
 - Complete unit ready for build and verification

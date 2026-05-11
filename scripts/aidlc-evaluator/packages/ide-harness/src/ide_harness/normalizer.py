@@ -149,13 +149,25 @@ def _count_workspace_files(workspace: Path) -> dict:
 
 
 def _count_doc_files(docs_dir: Path) -> dict:
-    """Count AIDLC doc files by phase."""
+    """Count AIDLC doc files by phase.
+
+    Supports both the legacy flat layout (inception/, construction/) and the
+    project-scoped layout (projects/{id}/inception/, projects/{id}/construction/).
+    """
     inception = construction = other = 0
     for f in docs_dir.rglob("*.md"):
-        rel = str(f.relative_to(docs_dir))
-        if rel.startswith("inception"):
+        rel = f.relative_to(docs_dir)
+        parts = rel.parts
+        # Support project-scoped layout: projects/{id}/inception/...
+        if len(parts) >= 3 and parts[0] == "projects":
+            phase_part = parts[2]
+        elif parts:
+            phase_part = parts[0]
+        else:
+            phase_part = ""
+        if phase_part == "inception":
             inception += 1
-        elif rel.startswith("construction"):
+        elif phase_part == "construction":
             construction += 1
         else:
             other += 1

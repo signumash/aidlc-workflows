@@ -20,7 +20,7 @@ Application Design focuses on:
 ## Step-by-Step Execution
 
 ### 1. Analyze Context
-- Read `aidlc-docs/inception/requirements/requirements.md` and `aidlc-docs/inception/user-stories/stories.md`
+- Read `{PROJECT_AIDLC_DOCS_ROOT}/inception/requirements/requirements.md` and `{PROJECT_AIDLC_DOCS_ROOT}/inception/user-stories/stories.md`
 - Identify key business capabilities and functional areas
 - Determine design scope and complexity
 
@@ -53,7 +53,7 @@ Application Design focuses on:
 - **Design Patterns** - Ask about architectural style preferences, pattern choices, and design constraints
 
 ### 5. Store Application Design Plan
-- Save as `aidlc-docs/inception/plans/application-design-plan.md`
+- Save as `{PROJECT_AIDLC_DOCS_ROOT}/inception/plans/application-design-plan.md`
 - Include all [Answer]: tags for user input
 - Ensure plan covers all design aspects
 
@@ -85,33 +85,56 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
   - "You indicated 'not sure' - what additional information would help you decide?"
   - "You mentioned 'depends on complexity' - how do you define complexity levels?"
 
-### 10. Generate Application Design Artifacts
+### 10. Source Document Alignment Check (MANDATORY for brownfield/migration)
+
+Before generating design artifacts, if a source specification or HLD was provided:
+1. Re-read the source specification/HLD document
+2. Compare the planned design against the source document
+3. Document ALL differences in a comparison table:
+
+```markdown
+| # | Source Spec Says | Design Says | Classification | Action |
+|---|---|---|---|---|
+| 1 | {source element} | {design element} | Intentional / Gap / Question | {action} |
+```
+
+4. Classify each difference as:
+   - **Intentional**: Deliberate design improvement over source (document why)
+   - **Gap**: Missing element that should be included (fix before presenting)
+   - **Question**: Ambiguity that requires user input (ask before presenting)
+5. Fix all gaps
+6. Present all questions to user and wait for answers
+7. Note all intentional deviations with rationale
+
+**Skip this step only if**: No source specification or HLD was provided for the project.
+
+### 11. Generate Application Design Artifacts
 - Execute the approved plan to generate design artifacts
-- Create `aidlc-docs/inception/application-design/components.md` with:
+- Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/components.md` with:
   - Component name and purpose
   - Component responsibilities
   - Component interfaces
-- Create `aidlc-docs/inception/application-design/component-methods.md` with:
+- Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/component-methods.md` with:
   - Method signatures for each component
   - High-level purpose of each method
   - Input/output types
   - Note: Detailed business rules will be defined in Functional Design (per-unit, CONSTRUCTION phase)
-- Create `aidlc-docs/inception/application-design/services.md` with:
+- Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/services.md` with:
   - Service definitions
   - Service responsibilities
   - Service interactions and orchestration
-- Create `aidlc-docs/inception/application-design/component-dependency.md` with:
+- Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/component-dependency.md` with:
   - Dependency matrix showing relationships
   - Communication patterns between components
   - Data flow diagrams
-- Create `aidlc-docs/inception/application-design/application-design.md` that consolidates the multiple design docs created above in a single doc.
+- Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/application-design.md` that consolidates the multiple design docs created above in a single doc.
 
-### 11. Log Approval
-- Log approval prompt with timestamp in `aidlc-docs/audit.md`
+### 12. Log Approval
+- Log approval prompt with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
 - Include complete approval prompt text
 - Use ISO 8601 timestamp format
 
-### 12. Present Completion Message
+### 13. Present Completion Message
 
 ```markdown
 # 🏗️ Application Design Complete
@@ -119,7 +142,7 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
 [AI-generated summary of application design artifacts created in bullet points]
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the application design artifacts at: `aidlc-docs/inception/application-design/`
+> Please examine the application design artifacts at: `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/`
 
 > **🚀 <u>**WHAT'S NEXT?**</u>**
 >
@@ -131,17 +154,17 @@ If the analysis in step 8 reveals ANY ambiguous answers, you MUST:
 > ✅ **Approve & Continue** - Approve design and proceed to **[Units Generation/CONSTRUCTION PHASE]**
 ```
 
-### 13. Wait for Explicit Approval
+### 14. Wait for Explicit Approval
 - Do not proceed until the user explicitly approves the application design
 - Approval must be clear and unambiguous
 - If user requests changes, update the design and repeat the approval process
 
-### 14. Record Approval Response
-- Log the user's approval response with timestamp in `aidlc-docs/audit.md`
+### 15. Record Approval Response
+- Log the user's approval response with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 
-### 15. Update Progress
-- Mark Application Design stage complete in `aidlc-docs/aidlc-state.md`
+### 16. Update Progress
+- Mark Application Design stage complete in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 - Update the "Current Status" section
 - Prepare for transition to next stage

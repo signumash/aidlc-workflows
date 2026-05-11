@@ -181,8 +181,8 @@ class KiroCLIAdapter(CLIAdapter):
                     aidlc_docs_dir = workspace / "aidlc-docs"
                     if aidlc_docs_dir.is_dir():
                         has_construction = any(
-                            (aidlc_docs_dir / "construction").rglob("*.md")
-                        ) if (aidlc_docs_dir / "construction").is_dir() else False
+                            aidlc_docs_dir.glob("projects/*/construction/**/*.md")
+                        )
                         file_count = sum(1 for _ in aidlc_docs_dir.rglob("*") if _.is_file())
                         _log(f"  aidlc-docs: {file_count} files, construction={'yes' if has_construction else 'no'}")
 

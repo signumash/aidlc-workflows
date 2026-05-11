@@ -137,8 +137,8 @@ entire workflow through Build and Test.
 - Load the relevant rule file BEFORE starting each stage.
 - Load common rules as needed (e.g. load_rule('common/content-validation.md') before \
 writing files, load_rule('common/question-format-guide.md') before creating questions).
-- Update aidlc-docs/aidlc-state.md after completing each stage.
-- Append to aidlc-docs/audit.md with ISO 8601 timestamps for each action.
+- Update aidlc-docs/projects/{project-id}/project-state.md after completing each stage.
+- Append to aidlc-docs/projects/{project-id}/audit.md with ISO 8601 timestamps for each action.
 - Never assume answers — always ask via handoff to the simulator.
 - For CONDITIONAL stages, evaluate based on project scope and skip with justification if \
 not needed, but always continue to the next stage.

@@ -24,7 +24,13 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 - Load `common/session-continuity.md` for session resumption guidance
 - Load `common/content-validation.md` for content validation requirements
 - Load `common/question-format-guide.md` for question formatting rules
+- Load `common/spec-management.md` for specification lifecycle rules
+- Load `common/pushback-protocol.md` for pushback guidance
 - Reference these throughout the workflow execution
+
+**Project-Scoped Rules**: Load when multi-project/unit work is detected:
+- Load `common/project-scoping.md` for project/unit directory conventions
+- Load `common/unit-assignment.md` for dependency and assignment management
 
 ## MANDATORY: Extensions Loading (Context-Optimized)
 **CRITICAL**: At workflow start, scan the `extensions/` directory recursively but load ONLY lightweight opt-in files — NOT full rule files. Full rule files are loaded on-demand after the user opts in.
@@ -47,7 +53,7 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 - Non-compliance with any applicable enabled extension rule is a **blocking finding** — do NOT present stage completion until resolved
 - When presenting stage completion, include a summary of extension rule compliance (compliant/non-compliant/N/A per rule, with brief rationale for N/A determinations)
 
-**Conditional Enforcement**: Extensions may be conditionally enabled/disabled. See `inception/requirements-analysis.md` for the opt-in mechanism. Before enforcing any extension at ANY stage, check its `Enabled` status in `aidlc-docs/aidlc-state.md` under `## Extension Configuration`. Skip disabled extensions and log the skip in audit.md. Default to enforced if no configuration exists. 
+**Conditional Enforcement**: Extensions may be conditionally enabled/disabled. See `inception/requirements-analysis.md` for the opt-in mechanism. Before enforcing any extension at ANY stage, check its `Enabled` status in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` under `## Extension Configuration`. Skip disabled extensions and log the skip in audit.md. Default to enforced if no configuration exists. 
 
 ## MANDATORY: Content Validation
 **CRITICAL**: Before creating ANY file, you MUST validate content according to `common/content-validation.md` rules:
@@ -100,7 +106,7 @@ All subsequent rule detail file references (e.g., `common/process-overview.md`, 
 1. **MANDATORY**: Log initial user request in audit.md with complete raw input
 2. Load all steps from `inception/workspace-detection.md`
 3. Execute workspace detection:
-   - Check for existing aidlc-state.md (resume if found)
+   - Check for existing project state in aidlc-docs/projects/ (resume if found)
    - Scan workspace for existing code
    - Determine if brownfield or greenfield
    - Check for existing reverse engineering artifacts
@@ -451,7 +457,7 @@ The Operations stage will eventually include:
 - **Adaptive Execution**: Only execute stages that add value
 - **Transparent Planning**: Always show execution plan before starting
 - **User Control**: User can request stage inclusion/exclusion
-- **Progress Tracking**: Update aidlc-state.md with executed and skipped stages
+- **Progress Tracking**: Update `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` with executed and skipped stages
 - **Complete Audit Trail**: Log ALL user inputs and AI responses in audit.md with timestamps
   - **CRITICAL**: Capture user's COMPLETE RAW INPUT exactly as provided
   - **CRITICAL**: Never summarize or paraphrase user input in audit log
@@ -470,7 +476,7 @@ The Operations stage will eventually include:
 
 ### Two-Level Checkbox Tracking System
 - **Plan-Level**: Track detailed execution progress within each stage
-- **Stage-Level**: Track overall workflow progress in aidlc-state.md
+- **Stage-Level**: Track overall workflow progress in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 - **Update immediately**: All progress updates in SAME interaction where work is completed
 
 ## Prompts Logging Requirements
@@ -509,31 +515,47 @@ The Operations stage will eventually include:
 ## Directory Structure
 
 ```text
-<WORKSPACE-ROOT>/                   # ⚠️ APPLICATION CODE HERE
-├── [project-specific structure]    # Varies by project (see code-generation.md)
+<WORKSPACE-ROOT>/                       # ⚠️ APPLICATION CODE HERE
+├── [project-specific structure]        # Varies by project (see code-generation.md)
 │
-├── aidlc-docs/                     # 📄 DOCUMENTATION ONLY
-│   ├── inception/                  # 🔵 INCEPTION PHASE
-│   │   ├── plans/
-│   │   ├── reverse-engineering/    # Brownfield only
-│   │   ├── requirements/
-│   │   ├── user-stories/
-│   │   └── application-design/
-│   ├── construction/               # 🟢 CONSTRUCTION PHASE
-│   │   ├── plans/
-│   │   ├── {unit-name}/
-│   │   │   ├── functional-design/
-│   │   │   ├── nfr-requirements/
-│   │   │   ├── nfr-design/
-│   │   │   ├── infrastructure-design/
-│   │   │   └── code/               # Markdown summaries only
-│   │   └── build-and-test/
-│   ├── operations/                 # 🟡 OPERATIONS PHASE (placeholder)
-│   ├── aidlc-state.md
-│   └── audit.md
+├── docs/                               # 📖 SERVICE DOCUMENTATION (spec-managed)
+│   ├── system-specs/                   # TRUTH: What IS implemented (current)
+│   │   ├── modules/                   # Per-service/component specs
+│   │   ├── common/                    # Cross-cutting rules and patterns
+│   │   └── design/                    # Architectural decisions
+│   └── task-specs/                     # ARCHIVE: Historical task context
+│       └── YYYY/MM/TASK-{id}-{name}/
+│
+├── aidlc-docs/                         # 📄 AI-DLC WORKFLOW MANAGEMENT
+│   └── projects/
+│       └── {project-id}/               # Per-project scope
+│           ├── project-state.md        # Project-level state (lead owns)
+│           ├── audit.md                # Project audit trail
+│           ├── inception/              # 🔵 INCEPTION PHASE
+│           │   ├── plans/
+│           │   ├── reverse-engineering/
+│           │   ├── requirements/
+│           │   ├── user-stories/
+│           │   └── application-design/
+│           ├── construction/           # 🟢 CONSTRUCTION PHASE
+│           │   ├── plans/
+│           │   ├── {unit-name}/
+│           │   │   ├── unit-state.md   # Unit-level state (engineer owns)
+│           │   │   ├── functional-design/
+│           │   │   ├── nfr-requirements/
+│           │   │   ├── nfr-design/
+│           │   │   ├── infrastructure-design/
+│           │   │   └── code/           # Markdown summaries only
+│           │   └── build-and-test/
+│           └── operations/             # 🟡 OPERATIONS PHASE (placeholder)
 ```
 
-**CRITICAL RULE**:
-- Application code: Workspace root (NEVER in aidlc-docs/)
-- Documentation: aidlc-docs/ only
+**Path Variable**:
+- `{PROJECT_AIDLC_DOCS_ROOT}` = `aidlc-docs/projects/{project-id}/` — all rule file references to `{PROJECT_AIDLC_DOCS_ROOT}` resolve to the active project's directory. Set during Workspace Detection.
+
+**CRITICAL RULES**:
+- Application code: Workspace root (NEVER in aidlc-docs/ or docs/)
+- AI-DLC workflow artifacts: `{PROJECT_AIDLC_DOCS_ROOT}` only
+- Service specifications (system-specs, task-specs): docs/ only
+- On unit completion: promote implemented behavior to docs/system-specs/ and archive to docs/task-specs/
 - Project structure: See code-generation.md for patterns by project type

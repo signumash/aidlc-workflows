@@ -28,9 +28,12 @@ def compare_runs(
     Uses Bedrock (LlmScorer) by default for true semantic evaluation. Pass an
     explicit scorer to override (e.g. HeuristicScorer for offline/unit tests).
 
+    Both reference and candidate paths should point to the project-scoped
+    aidlc-docs directory (e.g., ``aidlc-docs/projects/{project-id}/``).
+
     Args:
-        reference_path: Path to the reference aidlc-docs directory (golden baseline).
-        candidate_path: Path to the candidate aidlc-docs directory (run to evaluate).
+        reference_path: Path to the reference aidlc-docs project directory (golden baseline).
+        candidate_path: Path to the candidate aidlc-docs project directory (run to evaluate).
         scorer: Scorer implementation. Defaults to LlmScorer via Bedrock.
         output_path: If provided, write results as YAML to this path.
         aws_profile: AWS profile for Bedrock access (used when scorer is None).

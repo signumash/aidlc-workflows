@@ -66,8 +66,7 @@ def create_run_folder(output_dir: str | Path, config: RunnerConfig) -> Path:
     run_folder = output_dir / folder_name
 
     run_folder.mkdir()
-    (run_folder / "aidlc-docs" / "inception").mkdir(parents=True)
-    (run_folder / "aidlc-docs" / "construction").mkdir(parents=True)
+    (run_folder / "aidlc-docs" / "projects").mkdir(parents=True)
     (run_folder / "workspace").mkdir()
 
     # Write sentinel for orchestrator discovery (atomic via os.replace)

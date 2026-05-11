@@ -53,17 +53,17 @@ _MIN_STABLE_SECONDS = 60  # Require no new writes for this long before declaring
 # Expected sentinel files/directories that signal AIDLC phases completed.
 _AIDLC_DOCS_DIR = "aidlc-docs"
 _INCEPTION_SENTINELS = [
-    "aidlc-docs/inception/requirements/requirements.md",
-    "aidlc-docs/inception/plans/execution-plan.md",
-    "aidlc-docs/inception/application-design/components.md",
+    "aidlc-docs/projects/*/inception/requirements/requirements.md",
+    "aidlc-docs/projects/*/inception/plans/execution-plan.md",
+    "aidlc-docs/projects/*/inception/application-design/components.md",
 ]
 _CONSTRUCTION_SENTINELS = [
-    "aidlc-docs/construction/plans",
-    "aidlc-docs/construction/build-and-test/build-and-test-summary.md",
+    "aidlc-docs/projects/*/construction/plans",
+    "aidlc-docs/projects/*/construction/build-and-test/build-and-test-summary.md",
 ]
 _TRACKING_SENTINELS = [
-    "aidlc-docs/aidlc-state.md",
-    "aidlc-docs/audit.md",
+    "aidlc-docs/projects/*/project-state.md",
+    "aidlc-docs/projects/*/audit.md",
 ]
 
 
@@ -463,8 +463,8 @@ The complete AIDLC rules are in the `aidlc-rules/` directory.  Key principles:
 
 1. Follow the **Inception** phase first (requirements, plans, application design).
 2. Then follow the **Construction** phase (build plans, code generation, tests).
-3. All documentation goes in `aidlc-docs/` with the prescribed directory structure.
-4. Maintain `aidlc-docs/aidlc-state.md` and `aidlc-docs/audit.md` throughout.
+3. All documentation goes in `aidlc-docs/projects/{project-id}/` with the prescribed directory structure.
+4. Maintain `aidlc-docs/projects/{project-id}/project-state.md` and `aidlc-docs/projects/{project-id}/audit.md` throughout.
 5. Generate complete, working code with full test coverage.
 6. Do not skip phases or documents.
 
@@ -585,17 +585,21 @@ def _check_sentinels(workspace_dir: Path) -> bool:
     We require at least one file from each major section (inception,
     construction, tracking) to consider the output "complete."
     """
+    def _sentinel_exists(pattern: str) -> bool:
+        """Check if a sentinel path (possibly with glob wildcards) matches any file."""
+        return len(list(workspace_dir.glob(pattern))) > 0
+
     # At least one inception sentinel must exist.
     inception_ok = any(
-        (workspace_dir / s).exists() for s in _INCEPTION_SENTINELS
+        _sentinel_exists(s) for s in _INCEPTION_SENTINELS
     )
     # At least one construction sentinel must exist.
     construction_ok = any(
-        (workspace_dir / s).exists() for s in _CONSTRUCTION_SENTINELS
+        _sentinel_exists(s) for s in _CONSTRUCTION_SENTINELS
     )
     # Both tracking files should exist.
     tracking_ok = all(
-        (workspace_dir / s).exists() for s in _TRACKING_SENTINELS
+        _sentinel_exists(s) for s in _TRACKING_SENTINELS
     )
 
     return inception_ok and construction_ok and tracking_ok

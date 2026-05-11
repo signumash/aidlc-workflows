@@ -52,11 +52,11 @@ def test_normalize_counts_aidlc_docs(tmp_path: Path) -> None:
     output = tmp_path / "output"
     workspace = output / "workspace"
     workspace.mkdir(parents=True)
-    # aidlc-docs already moved to output_dir by the adapter
-    (output / "aidlc-docs" / "inception").mkdir(parents=True)
-    (output / "aidlc-docs" / "inception" / "requirements.md").write_text("# Reqs")
-    (output / "aidlc-docs" / "construction").mkdir(parents=True)
-    (output / "aidlc-docs" / "construction" / "plan.md").write_text("# Plan")
+    # aidlc-docs already moved to output_dir by the adapter (project-scoped layout)
+    (output / "aidlc-docs" / "projects" / "test-project" / "inception").mkdir(parents=True)
+    (output / "aidlc-docs" / "projects" / "test-project" / "inception" / "requirements.md").write_text("# Reqs")
+    (output / "aidlc-docs" / "projects" / "test-project" / "construction").mkdir(parents=True)
+    (output / "aidlc-docs" / "projects" / "test-project" / "construction" / "plan.md").write_text("# Plan")
 
     normalize_output(workspace, output, adapter_name="test")
 

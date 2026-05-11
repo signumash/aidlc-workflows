@@ -15,9 +15,9 @@
 ### Step 1: Load Reverse Engineering Context (if available)
 
 **IF brownfield project**:
-- Load `aidlc-docs/inception/reverse-engineering/architecture.md`
-- Load `aidlc-docs/inception/reverse-engineering/component-inventory.md`
-- Load `aidlc-docs/inception/reverse-engineering/technology-stack.md`
+- Load `{PROJECT_AIDLC_DOCS_ROOT}/inception/reverse-engineering/architecture.md`
+- Load `{PROJECT_AIDLC_DOCS_ROOT}/inception/reverse-engineering/component-inventory.md`
+- Load `{PROJECT_AIDLC_DOCS_ROOT}/inception/reverse-engineering/technology-stack.md`
 - Use these to understand existing system when analyzing request
 
 ### Step 2: Analyze User Request (Intent Analysis)
@@ -95,7 +95,7 @@ Analyze whatever the user has provided:
 **MANDATORY**: Scan all loaded `*.opt-in.md` files (loaded at workflow start from `extensions/` subdirectories) for an `## Opt-In Prompt` section. For each extension that declares one, include that question in the clarifying questions file created in Step 6. Present each opt-in question in the same language as the user's conversation.
 
 After receiving answers:
-1. Record each extension's enablement status in `aidlc-docs/aidlc-state.md` under `## Extension Configuration`:
+1. Record each extension's enablement status in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` under `## Extension Configuration`:
 
 ```markdown
 ## Extension Configuration
@@ -107,7 +107,7 @@ After receiving answers:
 2. **Deferred Rule Loading**: For each extension the user opted IN, load the full rules file now. The rules file is derived by naming convention: strip `.opt-in.md` from the opt-in filename and append `.md` (e.g., `security-baseline.opt-in.md` → `security-baseline.md`). For extensions the user opted OUT, do NOT load the full rules file.
 
 ### Step 6: Generate Clarifying Questions (PROACTIVE APPROACH)
-   - **ALWAYS** create `aidlc-docs/inception/requirements/requirement-verification-questions.md` unless requirements are exceptionally clear and complete
+   - **ALWAYS** create `{PROJECT_AIDLC_DOCS_ROOT}/inception/requirements/requirement-verification-questions.md` unless requirements are exceptionally clear and complete
    - Ask questions about ANY missing, unclear, or ambiguous areas
    - Focus on functional requirements, non-functional requirements, user scenarios, and business context
    - Request user to fill in all [Answer]: tags directly in the questions document
@@ -125,7 +125,7 @@ Present the question file to the user and STOP.
 
 ### Step 7: Generate Requirements Document
    - **PREREQUISITE**: Step 6 gate must be passed — all answers received and analyzed
-   - Create `aidlc-docs/inception/requirements/requirements.md`
+   - Create `{PROJECT_AIDLC_DOCS_ROOT}/inception/requirements/requirements.md`
    - Include intent analysis summary at the top:
      - User request
      - Request type
@@ -137,7 +137,7 @@ Present the question file to the user and STOP.
 
 ### Step 8: Update State Tracking
 
-Update `aidlc-docs/aidlc-state.md`:
+Update `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`:
 
 ```markdown
 ## Stage Progress
@@ -148,7 +148,7 @@ Update `aidlc-docs/aidlc-state.md`:
 ```
 
 ### Step 9: Log and Proceed
-   - Log approval prompt with timestamp in `aidlc-docs/audit.md`
+   - Log approval prompt with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
    - Present completion message in this structure:
      1. **Completion Announcement** (mandatory): Always start with this:
 
@@ -167,7 +167,7 @@ Update `aidlc-docs/aidlc-state.md`:
 
 ```markdown
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the requirements document at: `aidlc-docs/inception/requirements/requirements.md`
+> Please examine the requirements document at: `{PROJECT_AIDLC_DOCS_ROOT}/inception/requirements/requirements.md`
 
 
 
@@ -187,4 +187,4 @@ Update `aidlc-docs/aidlc-state.md`:
 
    - Wait for explicit user approval before proceeding
    - Record approval response with timestamp
-   - Update Requirements Analysis stage complete in aidlc-state.md
+   - Update Requirements Analysis stage complete in project-state.md

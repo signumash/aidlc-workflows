@@ -11,34 +11,35 @@ specification at `tech-env.md`, then follow the complete AIDLC process:
 
 1. Read the AIDLC rules for the inception phase from `aidlc-rules/`
 2. Create requirements analysis:
-   - `aidlc-docs/inception/requirements/requirements.md`
-   - `aidlc-docs/inception/requirements/requirement-verification-questions.md`
+   - `aidlc-docs/projects/{project-id}/inception/requirements/requirements.md`
+   - `aidlc-docs/projects/{project-id}/inception/requirements/requirement-verification-questions.md`
 3. Create plans:
-   - `aidlc-docs/inception/plans/application-design-plan.md`
-   - `aidlc-docs/inception/plans/execution-plan.md`
+   - `aidlc-docs/projects/{project-id}/inception/plans/application-design-plan.md`
+   - `aidlc-docs/projects/{project-id}/inception/plans/execution-plan.md`
 4. Create application design:
-   - `aidlc-docs/inception/application-design/components.md`
-   - `aidlc-docs/inception/application-design/component-methods.md`
-   - `aidlc-docs/inception/application-design/component-dependency.md`
-   - `aidlc-docs/inception/application-design/services.md`
+   - `aidlc-docs/projects/{project-id}/inception/application-design/components.md`
+   - `aidlc-docs/projects/{project-id}/inception/application-design/component-methods.md`
+   - `aidlc-docs/projects/{project-id}/inception/application-design/component-dependency.md`
+   - `aidlc-docs/projects/{project-id}/inception/application-design/services.md`
 
 ## CONSTRUCTION PHASE
 
 1. Read the AIDLC rules for the construction phase
 2. Create build plans and test instructions:
-   - `aidlc-docs/construction/plans/` (code generation plan)
-   - `aidlc-docs/construction/build-and-test/build-instructions.md`
-   - `aidlc-docs/construction/build-and-test/unit-test-instructions.md`
-   - `aidlc-docs/construction/build-and-test/integration-test-instructions.md`
-   - `aidlc-docs/construction/build-and-test/build-and-test-summary.md`
+   - `aidlc-docs/projects/{project-id}/construction/plans/` (code generation plan)
+   - `aidlc-docs/projects/{project-id}/construction/build-and-test/build-instructions.md`
+   - `aidlc-docs/projects/{project-id}/construction/build-and-test/unit-test-instructions.md`
+   - `aidlc-docs/projects/{project-id}/construction/build-and-test/integration-test-instructions.md`
+   - `aidlc-docs/projects/{project-id}/construction/build-and-test/build-and-test-summary.md`
 3. Generate the application source code and tests in the project root
 4. Ensure all unit tests pass
 
 ## TRACKING
 
-- Create and maintain `aidlc-docs/aidlc-state.md` tracking progress through \
-each phase
-- Create and maintain `aidlc-docs/audit.md` with an audit trail of actions taken
+- Create and maintain `aidlc-docs/projects/{project-id}/project-state.md` tracking progress \
+through each phase
+- Create and maintain `aidlc-docs/projects/{project-id}/audit.md` with an audit trail of actions taken
+- Use a short, descriptive project ID derived from the project name (e.g., "sci-calc", "bookshelf-api")
 
 Follow every AIDLC rule precisely. Do not skip phases or documents. Generate \
 complete, working code with full test coverage.

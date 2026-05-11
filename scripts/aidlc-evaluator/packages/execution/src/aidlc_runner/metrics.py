@@ -117,9 +117,16 @@ def _scan_artifacts(run_folder: Path) -> dict[str, Any]:
                 continue
             rel = f.relative_to(aidlc_docs)
             parts = rel.parts
-            if parts and parts[0] == "inception":
+            # Support project-scoped layout: projects/{id}/inception/...
+            if len(parts) >= 3 and parts[0] == "projects":
+                phase_part = parts[2]
+            elif parts:
+                phase_part = parts[0]
+            else:
+                phase_part = ""
+            if phase_part == "inception":
                 inception_files += 1
-            elif parts and parts[0] == "construction":
+            elif phase_part == "construction":
                 construction_files += 1
             else:
                 other_doc_files += 1

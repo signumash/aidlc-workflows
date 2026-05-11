@@ -36,7 +36,7 @@ def make_file_tools(run_folder: Path) -> list:
         """Read the contents of a file in the run folder.
 
         Args:
-            path: File path relative to the run folder (e.g. 'aidlc-docs/aidlc-state.md').
+            path: File path relative to the run folder (e.g. 'aidlc-docs/projects/my-app/project-state.md').
         """
         try:
             target = _resolve_safe(run_folder, path)
@@ -53,7 +53,7 @@ def make_file_tools(run_folder: Path) -> list:
         """Write content to a file in the run folder. Creates parent directories if needed.
 
         Args:
-            path: Relative to run folder (e.g. 'aidlc-docs/inception/requirements.md').
+            path: Relative to run folder (e.g. 'aidlc-docs/projects/my-app/inception/requirements.md').
             content: The text content to write to the file.
         """
         try:

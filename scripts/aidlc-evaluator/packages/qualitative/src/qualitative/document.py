@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-_SKIP_FILES = frozenset({"aidlc-state.md", "audit.md"})
+_SKIP_FILES = frozenset({"aidlc-state.md", "project-state.md", "audit.md"})
 
 
 @dataclass
@@ -20,21 +20,35 @@ class AidlcDocument:
 def classify_phase(relative_path: str) -> str:
     """Determine the AIDLC phase from a document's relative path.
 
+    Supports both legacy flat layout (inception/...) and project-scoped
+    layout (projects/{id}/inception/...).
+
     Returns 'inception', 'construction', or 'other'.
     """
     parts = Path(relative_path).parts
-    if parts and parts[0] == "inception":
+    # Support project-scoped layout variations:
+    # - projects/{id}/inception/...
+    # - aidlc-docs/projects/{id}/inception/...
+    if len(parts) >= 3 and parts[0] == "projects":
+        phase_part = parts[2]
+    elif len(parts) >= 4 and parts[0] == "aidlc-docs" and parts[1] == "projects":
+        phase_part = parts[3]
+    elif parts:
+        phase_part = parts[0]
+    else:
+        return "other"
+    if phase_part == "inception":
         return "inception"
-    if parts and parts[0] == "construction":
+    if phase_part == "construction":
         return "construction"
     return "other"
 
 
 def load_documents(aidlc_docs_path: Path) -> list[AidlcDocument]:
-    """Load all markdown documents from an aidlc-docs directory.
+    """Load all markdown documents from an aidlc-docs project directory.
 
-    Skips workflow-internal files (aidlc-state.md, audit.md) that track
-    process state rather than design intent.
+    Skips workflow-internal files (project-state.md, aidlc-state.md, audit.md)
+    that track process state rather than design intent.
     """
     if not aidlc_docs_path.is_dir():
         return []

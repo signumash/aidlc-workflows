@@ -28,13 +28,13 @@ def test_normalize_creates_run_meta(tmp_path: Path) -> None:
 def test_normalize_copies_aidlc_docs(tmp_path: Path) -> None:
     """normalize_output should copy aidlc-docs to output."""
     source = tmp_path / "source"
-    (source / "aidlc-docs" / "inception").mkdir(parents=True)
-    (source / "aidlc-docs" / "inception" / "requirements.md").write_text("# Reqs")
+    (source / "aidlc-docs" / "projects" / "test-project" / "inception").mkdir(parents=True)
+    (source / "aidlc-docs" / "projects" / "test-project" / "inception" / "requirements.md").write_text("# Reqs")
 
     output = tmp_path / "output"
     normalize_output(source, output, adapter_name="test")
 
-    assert (output / "aidlc-docs" / "inception" / "requirements.md").exists()
+    assert (output / "aidlc-docs" / "projects" / "test-project" / "inception" / "requirements.md").exists()
 
 
 def test_normalize_copies_workspace_files(tmp_path: Path) -> None:

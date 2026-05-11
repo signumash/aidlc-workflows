@@ -27,9 +27,9 @@ This stage decomposes the system into manageable units of work through two integ
 
 ## Step 2: Include Mandatory Unit Artifacts in Plan
 **ALWAYS** include these mandatory artifacts in the unit plan:
-- [ ] Generate `aidlc-docs/inception/application-design/unit-of-work.md` with unit definitions and responsibilities
-- [ ] Generate `aidlc-docs/inception/application-design/unit-of-work-dependency.md` with dependency matrix
-- [ ] Generate `aidlc-docs/inception/application-design/unit-of-work-story-map.md` mapping stories to units
+- [ ] Generate `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/unit-of-work.md` with unit definitions and responsibilities
+- [ ] Generate `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/unit-of-work-dependency.md` with dependency matrix
+- [ ] Generate `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/unit-of-work-story-map.md` mapping stories to units
 - [ ] **Greenfield only**: Document code organization strategy in `unit-of-work.md` (see code-generation.md for structure patterns)
 - [ ] Validate unit boundaries and dependencies
 - [ ] Ensure all stories are assigned to units
@@ -55,7 +55,7 @@ This stage decomposes the system into manageable units of work through two integ
 - **Code Organization (Greenfield multi-unit only)** - Ask about deployment model and directory structure preferences
 
 ## Step 4: Store UOW Plan
-- Save as `aidlc-docs/inception/plans/unit-of-work-plan.md`
+- Save as `{PROJECT_AIDLC_DOCS_ROOT}/inception/plans/unit-of-work-plan.md`
 - Include all [Answer]: tags for user input
 - Ensure plan covers all aspects of system decomposition
 
@@ -88,7 +88,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
   - "You mentioned 'depends on complexity' - how do you define complexity levels?"
 
 ## Step 9: Request Approval
-- Ask: "**Unit of work plan complete. Review the plan in aidlc-docs/inception/plans/unit-of-work-plan.md. Ready to proceed to generation?**"
+- Ask: "**Unit of work plan complete. Review the plan in {PROJECT_AIDLC_DOCS_ROOT}/inception/plans/unit-of-work-plan.md. Ready to proceed to generation?**"
 - DO NOT PROCEED until user confirms
 
 ## Step 10: Log Approval
@@ -97,7 +97,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 - Include complete approval prompt text
 
 ## Step 11: Update Progress
-- Mark Units Generation Part 1 (Planning) complete in aidlc-state.md
+- Mark Units Generation Part 1 (Planning) complete in project-state.md
 - Update the "Current Status" section
 - Prepare for transition to Units Generation Part 2 (Generation)
 
@@ -106,7 +106,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 # PART 2: GENERATION
 
 ## Step 12: Load Unit of Work Plan
-- [ ] Read the complete plan from `aidlc-docs/inception/plans/unit-of-work-plan.md`
+- [ ] Read the complete plan from `{PROJECT_AIDLC_DOCS_ROOT}/inception/plans/unit-of-work-plan.md`
 - [ ] Identify the next uncompleted step (first [ ] checkbox)
 - [ ] Load the context and requirements for that step
 
@@ -118,7 +118,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 
 ## Step 14: Update Progress
 - [ ] Mark the completed step as [x] in the unit of work plan
-- [ ] Update `aidlc-docs/aidlc-state.md` current status
+- [ ] Update `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` current status
 - [ ] Save all generated artifacts
 
 ## Step 15: Continue or Complete
@@ -134,7 +134,7 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 [AI-generated summary of units and decomposition created in bullet points]
 
 > **📋 <u>**REVIEW REQUIRED:**</u>**  
-> Please examine the units generation artifacts at: `aidlc-docs/inception/application-design/`
+> Please examine the units generation artifacts at: `{PROJECT_AIDLC_DOCS_ROOT}/inception/application-design/`
 
 > **🚀 <u>**WHAT'S NEXT?**</u>**
 >
@@ -150,12 +150,12 @@ If the analysis in step 7 reveals ANY ambiguous answers, you MUST:
 - If user requests changes, update the units and repeat the approval process
 
 ## Step 18: Record Approval Response
-- Log the user's approval response with timestamp in `aidlc-docs/audit.md`
+- Log the user's approval response with timestamp in `{PROJECT_AIDLC_DOCS_ROOT}/audit.md`
 - Include the exact user response text
 - Mark the approval status clearly
 
 ## Step 19: Update Progress
-- Mark Units Generation stage complete in `aidlc-docs/aidlc-state.md`
+- Mark Units Generation stage complete in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 - Update the "Current Status" section
 - Prepare for transition to CONSTRUCTION PHASE
 

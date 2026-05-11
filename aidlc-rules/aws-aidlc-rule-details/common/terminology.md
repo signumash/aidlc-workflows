@@ -165,17 +165,17 @@ Examples (these are internal sub-steps within a single stage, not separate stage
 
 ### Plans
 Documents with checkboxes and questions that guide execution.
-- Located in `aidlc-docs/plans/`
+- Located in `{PROJECT_AIDLC_DOCS_ROOT}/plans/`
 - Examples: `story-generation-plan.md`, `unit-of-work-plan.md`
 
 ### Artifacts
 Generated outputs from executing plans.
-- Located in various `aidlc-docs/` subdirectories
+- Located in various `{PROJECT_AIDLC_DOCS_ROOT}/` subdirectories
 - Examples: `requirements.md`, `stories.md`, `design.md`
 
 ### State Files
 Files tracking workflow progress and status.
-- `aidlc-state.md`: Overall workflow state
+- `project-state.md`: Overall workflow state
 - `audit.md`: Complete audit trail of all interactions
 
 ## Common Abbreviations

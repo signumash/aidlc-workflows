@@ -37,6 +37,19 @@
 ## FALLBACK: If Mermaid validation fails, use text-based workflow representation
 ```
 
+### Mermaid ER Diagram Validation Checklist
+
+Before writing a Mermaid ER diagram:
+- [ ] No blank lines between entity blocks
+- [ ] No reserved words as attribute names (timestamp, type, state, status, order, key, index, table)
+- [ ] Annotations limited to: PK, FK, UK
+- [ ] Type names are simple types only (string, int, long, boolean, date)
+- [ ] Each entity block has at least one attribute
+- [ ] Relationship labels do not contain special characters
+- [ ] Entity names use PascalCase with no spaces
+
+If unsure about syntax validity, use text-based table representation instead.
+
 ### Implementation Pattern
 ```markdown
 ## Workflow Visualization

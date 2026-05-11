@@ -40,7 +40,7 @@
 - **Solution**: Ask user to verify workspace path and permissions
 - **Workaround**: Proceed with user-provided information only
 
-**Error**: Existing `aidlc-state.md` is corrupted
+**Error**: Existing `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` is corrupted
 - **Cause**: Manual editing, incomplete previous run
 - **Solution**: Ask user if they want to start fresh or attempt recovery
 - **Recovery**: Create backup, start new state file
@@ -186,10 +186,10 @@
 
 ### Corrupted State File
 
-**Scenario**: `aidlc-state.md` is corrupted or inconsistent
+**Scenario**: `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md` is corrupted or inconsistent
 
 **Recovery Steps**:
-1. Create backup: `aidlc-state.md.backup`
+1. Create backup: `project-state.md.backup`
 2. Ask user which stage they're actually on
 3. Regenerate state file from scratch
 4. Mark completed stages based on existing artifacts
@@ -213,7 +213,7 @@
 **Recovery Steps**:
 1. Confirm user wants to restart (data will be lost)
 2. Archive existing artifacts: `{artifact}.backup`
-3. Reset stage status in `aidlc-state.md`
+3. Reset stage status in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 4. Clear stage checkboxes in plan files
 5. Re-execute stage from beginning
 
@@ -224,7 +224,7 @@
 **Recovery Steps**:
 1. Confirm user understands implications
 2. Document skip reason in `audit.md`
-3. Mark stage as "SKIPPED" in `aidlc-state.md`
+3. Mark stage as "SKIPPED" in `{PROJECT_AIDLC_DOCS_ROOT}/project-state.md`
 4. Proceed to next stage
 5. Note: May cause issues in later stages if dependencies missing
 
@@ -269,7 +269,7 @@
 - **Cause**: Files deleted, moved, or never created
 - **Solution**: 
   1. Identify which stage created the missing artifacts
-  2. Check if stage was marked complete in aidlc-state.md
+  2. Check if stage was marked complete in project-state.md
   3. If marked complete but artifacts missing: Regenerate that stage
   4. If not marked complete: Resume from that stage
 - **Recovery**: Return to the stage that creates missing artifacts and re-execute
@@ -284,28 +284,28 @@
 
 ### Inconsistent State During Resumption
 
-**Error**: aidlc-state.md shows stage complete but artifacts don't exist
+**Error**: project-state.md shows stage complete but artifacts don't exist
 - **Cause**: State file updated but artifact generation failed
 - **Solution**:
-  1. Mark stage as incomplete in aidlc-state.md
+  1. Mark stage as incomplete in project-state.md
   2. Re-execute the stage to generate artifacts
   3. Verify artifacts exist before marking complete
 - **Recovery**: Reset stage status and re-execute
 
-**Error**: Artifacts exist but aidlc-state.md shows stage incomplete
+**Error**: Artifacts exist but project-state.md shows stage incomplete
 - **Cause**: Artifact generation succeeded but state update failed
 - **Solution**:
   1. Verify artifacts are complete and valid
-  2. Update aidlc-state.md to mark stage complete
+  2. Update project-state.md to mark stage complete
   3. Proceed to next stage
 - **Recovery**: Update state file to reflect actual completion
 
-**Error**: Multiple stages marked as "current" in aidlc-state.md
+**Error**: Multiple stages marked as "current" in project-state.md
 - **Cause**: State file corruption, manual editing
 - **Solution**:
   1. Review artifacts to determine actual progress
   2. Ask user which stage they're actually on
-  3. Correct aidlc-state.md to show single current stage
+  3. Correct project-state.md to show single current stage
 - **Recovery**: Rebuild state file based on existing artifacts
 
 ### Context Loading Errors
@@ -328,7 +328,7 @@
 
 ### Resumption Best Practices
 
-1. **Always validate state**: Check aidlc-state.md matches actual artifacts
+1. **Always validate state**: Check project-state.md matches actual artifacts
 2. **Load incrementally**: Load artifacts stage-by-stage, validate each
 3. **Fail fast**: Stop immediately if critical artifacts are missing
 4. **Communicate clearly**: Tell user exactly what's missing and why it's needed

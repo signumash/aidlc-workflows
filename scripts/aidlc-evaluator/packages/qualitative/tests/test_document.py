@@ -43,6 +43,7 @@ class TestLoadDocuments:
 
     def test_skips_aidlc_state_and_audit(self, tmp_path: Path):
         (tmp_path / "aidlc-state.md").write_text("state tracking")
+        (tmp_path / "project-state.md").write_text("state tracking")
         (tmp_path / "audit.md").write_text("audit log")
         (tmp_path / "real-doc.md").write_text("# Real content")
 

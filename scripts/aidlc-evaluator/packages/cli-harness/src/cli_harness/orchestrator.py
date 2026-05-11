@@ -188,7 +188,7 @@ def run_cli_evaluation(
         return result, 1
 
     doc_files = [f for f in aidlc_docs.rglob("*.md")
-                 if f.name not in ("aidlc-state.md", "audit.md")]
+                 if f.name not in ("aidlc-state.md", "project-state.md", "audit.md")]
     if not doc_files:
         print("[WARN] aidlc-docs exists but contains no substantive documents")
 
